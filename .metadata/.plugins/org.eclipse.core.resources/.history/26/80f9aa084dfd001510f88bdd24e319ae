@@ -1,0 +1,9 @@
+public String reverse(String s) {
+
+        String reversedString = "";
+        for(int i=s.length(); i>0; i--) {
+            reversedString += s.charAt(i-1);
+        }   
+
+        return reversedString;
+    }

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename compilation unit &apos;Scene.java&apos; to &apos;Driver.java&apos;&#x0A;- Original project: &apos;FistProject&apos;&#x0A;- Original element: &apos;Scene.java&apos;&#x0A;- Renamed element: &apos;Driver.java&apos;" description="Rename compilation unit &apos;Scene.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;{Scene.java" name="Driver.java" references="false" stamp="1458688407094" version="1.0"/>&#x0A;&#x0A;&#x0A;</session>

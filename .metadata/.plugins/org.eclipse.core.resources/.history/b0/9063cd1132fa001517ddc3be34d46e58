@@ -1,0 +1,27 @@
+
+public class Driver
+{
+	static char[] row1 = {'_','_','_'};
+	static char[] row2 = {'_','_','_'};
+	static char[] row3 = {'_','_','_'};
+	public static void main(String[] args)
+	{
+		Driver.displayBoard();
+	}
+	//static makes this function a class function
+	static void displayBoard()
+	{
+		System.out.println("___\t___\t___");
+		System.out.println("___\t___\t___");
+		System.out.println("___\t___\t___");
+		
+		for(int i = 0; i < row1.length; i = i = + 1);
+		{
+			System.out.print("___\t");
+		}
+		else if(row1[i] == '_')
+		{
+			
+		}
+	}
+}

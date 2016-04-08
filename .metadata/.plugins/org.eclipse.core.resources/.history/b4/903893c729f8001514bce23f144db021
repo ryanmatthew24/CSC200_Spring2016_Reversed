@@ -1,0 +1,15 @@
+
+public class Driver
+{
+	public static void main(String[] args)
+	{
+		Driver.displayBoard();
+	}
+	//static makes this function a class function
+	static void displayBoard()
+	{
+		System.out.println("___\t___\t___\t");
+		System.out.println("___\t___\t___\t");
+		System.out.println("___\t___\t___\t");
+	}
+}
