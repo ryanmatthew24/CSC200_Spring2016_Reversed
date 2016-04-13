@@ -5,6 +5,37 @@ public class Driver
 	{
 		String s = "hello";
 		String s2 = "elephant";
+		System.out.println(Driver.removeVowels(s));
+	}
+	
+	//return the integer version of the char parameter
+	static int charToInt(char c)
+	{
+		return "0123456789".indexOf(c);
+	}
+	
+	//Converts s, which is a string representation
+	//of an int into an int representation
+	//"124" -> 124
+	static int stringToInt(String s)
+	{
+		String stringNum = "0123";
+		int x = Integer.valueOf(stringNum);
+	    return x;
+	}
+	
+	static String removeChars(String s, String charsToRemove)
+	{
+		String answer = "";
+		for(int i = 0; i < s.length(); i++)
+		{
+			//should we keep the current character
+			if(charsToRemove.indexOf(s.charAt(i)) == -1)
+			{
+				answer = answer + s.charAt(i);
+			}
+		}
+		return answer;
 	}
 	
 	//returns a new String with all of the vowels
@@ -12,9 +43,7 @@ public class Driver
 	//"hello" -> hll
 	static String removeVowels(String s)
 	{
-		String removeVowel = "whatever input";
-		removeVowel = removeVowel.replaceAll("AaEeIiOoUu", "");
-		return "removeVowel";
+		return Driver.removeChars(s, "aeiouAEIOU");
 	}
 	
 	//returns a new String with all of the consonants
@@ -22,9 +51,7 @@ public class Driver
 	//"hello" -> eo
 	static String removeConsonants(String s)
 	{
-		String removeConsonant = "whatever input";
-		removeConsonant = removeConsonant.replaceAll("qQwWrRtTyYpPsSdDfFgGhHjJkKlLzZxXcCvVbBnNmM", "");
-		return "removeConsonant";
+		return Driver.removeChars(s, "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ");
 	}
 		
 	//returns a new String with all of the numbers
@@ -32,9 +59,7 @@ public class Driver
 	//"he11o" -> heo
 	static String removeDigits(String s)
 	{
-		String removeDigit = "what3v3r 1nput";
-		removeDigit = removeDigit.replace("1234567890","");	
-		return "removeDigit";
+		return Driver.removeChars(s, "0123456789");
 	}
 		
 	//return the first occurence in s where c is found or -1 if 
