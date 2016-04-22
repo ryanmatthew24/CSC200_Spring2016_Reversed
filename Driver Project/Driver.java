@@ -1,40 +1,232 @@
+import java.util.Random;
+
 
 public class Driver 
 {
 	public static void main(String[] args)
 	{
-		//test functions
-		//System.out.prinln();
-	}
-	//integer into char 10->A
-	static char intToChar(int val)
-	{
-		String map = "0123456789ABCDEF";
-		return map.charAt(val);
+		int[] arrayOfNumbers = new int[10];
+		Driver.fillArrayWithRandomInts(arrayOfNumbers);
+		Driver.printIntArray(arrayOfNumbers);
+		Driver.bubbleSort(arrayOfNumbers);
+		Driver.printIntArray(arrayOfNumbers);
 	}
 	
-	static String decimalToBase(int decimalNumber, int radix)
+	//Homework
+	static void bubbleSort(int[] ar)
 	{
-		//remember remainder and the division
-		String answer = "";
 		
-		while(decimalNumber != 0)
+	}
+	static void ghettoSort(int[] ar)
+	{
+		int[] answer = new int[ar.length];
+		int[] arCopy = new int[ar.length];
+		Driver.copyArray(ar, arCopy);
+		int posOfSmallest;
+		int currPos = 0;
+		while(arCopy.length > 0)
 		{
-			answer = Driver.intToChar(decimalNumber % radix) + answer;
-			decimalNumber /= radix;
+			posOfSmallest = Driver.positionOfSmallest(arCopy);
+			answer[currPos] = arCopy[posOfSmallest];
+			currPos++;
+			arCopy = Driver.removeAtPos(posOfSmallest, arCopy);
 		}
-        return answer;
+		Driver.copyArray(answer, ar);
 	}
 	
+	static void copyArray(int[] source, int[] destination)
+	{
+		for(int i = 0; i < source.length; i++)
+		{
+			destination[i] = source[i];
+		}
+	}
+	
+	static int[] removeAtPos(int pos, int[] ar)
+	{
+		int[] answer = new int[ar.length - 1];
+		int currPos = 0;
+		for(int i = 0; i < pos; i++)
+		{
+			answer[currPos] = ar[i];
+			currPos++;
+		}
+		for(int i = pos+1; i < ar.length; i++)
+		{
+			answer[currPos] = ar[i];
+			currPos++;
+		}
+		return answer;
+	}
+	
+	static int positionOfSmallest(int[] ar)
+	{
+		int winnerPos = 0;
+		for(int i = 1; i < ar.length; i++)
+		{
+			if(ar[i] < ar[winnerPos])
+			{
+				winnerPos = i;
+			}
+		}
+		return winnerPos;
+	}
+	
+	static void fillArrayWithRandomInts(int[] ar)
+	{
+		Random r = new Random();
+		for(int i = 0; i < ar.length; i++)
+		{
+			ar[i] = r.nextInt(101);
+		}
+	}
+	
+	static void printIntArray(int[] ar)
+	{
+		for(int i = 0; i < ar.length; i++)
+		{
+			System.out.print(ar[i] + " ");
+		}
+		System.out.println();
+	}
+	
+	static String charArrayToString(char[] ar)
+	{
+		String answer = "";
+		for(int i = 0; i < ar.length; i++)
+		{
+			answer += ar[i];
+		}
+		return answer;
+	}
+	
+	static char[] stringToCharArray(String s)
+	{
+		char[] ar = new char[s.length()];
+		for(int i = 0; i < s.length(); i++)
+		{
+			ar[i] = s.charAt(i);
+		}
+		return ar;
+	}
+	
+	static String substring(String s, int beginPos, int endPos)
+	{
+		String answer = "";
+		for(int i = beginPos; i < endPos; i++)
+		{
+			answer += s.charAt(i);
+		}
+		return answer;
+	}
+	
+	static String substring(String s, int pos)
+	{
+		String answer = "";
+		for(int i = pos; i < s.length(); i++)
+		{
+			answer += s.charAt(i);
+			//answer = answer + s.charAt(i)
+		}
+		return answer;
+	}
+	
+	static char int2Char(int num)
+	{
+		String map = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		return map.charAt(num);
+	}
+	
+	static String decimalToBase(int dec, int radix)
+	{
+		String answer = "";
+		while(dec != 0)
+		{
+			answer =  Driver.int2Char(dec % radix) + answer;
+			dec /= radix;
+		}
+		return answer;
+	}
+	
+	static String reverse(String s)
+	{
+		String answer = "";
+		for(int i = s.length()-1; i >= 0; i--)
+		{
+			answer += s.charAt(i);
+		}
+		return answer;
+	}
+	
+	static int baseToInteger(String s, int radix)
+	{
+		int place = 1;
+		int total = 0;
+		char currChar;
 		
+		for(int i = s.length()-1; i >= 0; i--)
+		{
+			currChar = s.charAt(i);
+			total += (Driver.charToInt(currChar) * place);
+			place *= radix;
+		}
+		return total;
+	}
 	
+	static int hexToInteger(String hex)
+	{
+		int place = 1;
+		int total = 0;
+		char currChar;
+		
+		for(int i = hex.length()-1; i >= 0; i--)
+		{
+			currChar = hex.charAt(i);
+			total += (Driver.charToInt(currChar) * place);
+			place *= 16;
+		}
+		return total;
+	}
 	
+	static int octalToInteger(String oct)
+	{
+		int place = 1;
+		int total = 0;
+		char currChar;
+		
+		for(int i = oct.length()-1; i >= 0; i--)
+		{
+			currChar = oct.charAt(i);
+			total += (Driver.charToInt(currChar) * place);
+			place *= 8;
+		}
+		return total;
+	}
+	
+	//this guy should take a String representation of a binary number
+	//as a parameter and return as a int the decimal equivalent
+	//"1011" -> 11
+	static int binaryToInteger(String bin)
+	{
+		int place = 1;
+		int total = 0;
+		char currChar;
+		for(int i = bin.length()-1; i >= 0; i--)
+		{
+			currChar = bin.charAt(i);
+			if(currChar == '1')
+			{
+				total += place;
+			}
+			place *= 2;
+		}
+		return total;
+	}
 	
 	//return the integer version of the char parameter
-	
 	static int charToInt(char c)
 	{
-		return "0123456789ABCEF".indexOf(c);
+		return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(c);
 	}
 	
 	//Converts s, which is a string representation
@@ -144,3 +336,4 @@ public class Driver
 		}
 		return answer;
 	}
+}
